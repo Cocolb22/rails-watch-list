@@ -1,0 +1,16 @@
+<h1>Add your movies</h1>
+
+
+<%= simple_form_for [@list, @bookmark] do |f| %>
+  <%= f.input :comment %>
+  <%= f.association :movie %>
+  <%= f.button :submit %>
+<% end %>
+
+<ul class="list-group">
+  <% @list.bookmarks.each do |bookmark| %>
+    <li class="list-group-item"><%= bookmark.comment %></li>
+    <li class="list-group-item"><%= bookmark.movie.title %></li>
+     <%= link_to 'delete this list', bookmark_path(bookmark), method: :delete, class: 'btn btn-cancel', data: { confirm: 'Are you sure you want to delete this list?' } %>
+  <% end %>
+</ul>
